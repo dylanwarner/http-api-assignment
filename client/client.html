@@ -13,8 +13,6 @@
     // grab content-type header
     const type = xhr.getResponseHeader('content-type');
 
-    console.log(type);
-
     // grab content section
     const content = document.querySelector("#content");
 
@@ -50,9 +48,11 @@
 
     if(type === 'application/json') {
       const obj = JSON.parse(xhr.response);
+      console.log(obj);
       content.innerHTML += `<p>Message: ${obj.message}</p>`;
     } else if (type === 'text/xml') {
       const msg = xhr.responseXML.querySelector('message').textContent;
+      console.log(xhr.response);
       p.textContent = `Message: ${msg}`;
 
       content.appendChild(p);

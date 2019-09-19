@@ -18,6 +18,9 @@
     // grab content section
     const content = document.querySelector("#content");
 
+    const h1 = document.createElement('h1');
+    const p = document.createElement('p');
+
     switch(xhr.status) {
       case 200: //success
         content.innerHTML = `<b>Success</b>`;
@@ -47,12 +50,12 @@
 
     if(type === 'application/json') {
       const obj = JSON.parse(xhr.response);
-      console.dir(obj);
       content.innerHTML += `<p>Message: ${obj.message}</p>`;
     } else if (type === 'text/xml') {
       const msg = xhr.responseXML.querySelector('message').textContent;
-      console.dir(msg);
-      content.innerHTML += `Message: ${msg}`;
+      p.textContent = `Message: ${msg}`;
+
+      content.appendChild(p);
     }
 
     };
